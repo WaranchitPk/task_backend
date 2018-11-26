@@ -11,7 +11,7 @@ class InsertTaskSpec extends PlaySpecification {
       val responseInsert = await(WsTestClient
         .wsUrl(apiInstance.pathApi)(9000)
         .addHttpHeaders("Content-Type" -> "application/json")
-        .post(apiInstance.bodyInsertAndUpdate))
+        .post(apiInstance.bodyInsert))
       val bodyMsgInsert = (responseInsert.json \ "msg").as[String]
       responseInsert.status must equalTo(CREATED)
       bodyMsgInsert must equalTo("Created Success")

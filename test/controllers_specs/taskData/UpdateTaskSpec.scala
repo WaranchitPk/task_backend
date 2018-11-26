@@ -11,7 +11,7 @@ class UpdateTaskSpec extends PlaySpecification {
       val responseUpdate = await(WsTestClient
         .wsUrl(apiInstance.pathApi + idTaskUpdate)(9000)
         .addHttpHeaders("Content-Type" -> "application/json")
-        .put(apiInstance.bodyInsertAndUpdate))
+        .put(apiInstance.boduUpdate))
       val bodyMsg = (responseUpdate.json \ "msg").as[String]
       responseUpdate.status must equalTo(OK)
       bodyMsg must equalTo("Updated Success")

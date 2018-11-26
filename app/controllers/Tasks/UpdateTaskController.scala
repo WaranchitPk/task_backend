@@ -18,27 +18,21 @@ class UpdateTaskController @Inject()(db: Database, cc: ControllerComponents) ext
 
     val bodyTaskSubject = (request.body \ "subject").as[String]
     val bodyTaskDesc = (request.body \ "desc").as[String]
-    val bodyTaskStatus = (request.body \ "status").as[String]
     val bodyTaskUpdatedDate = LocalDateTime.now().toString
-    if (bodyTaskStatus == "pending" || bodyTaskStatus == "done") {
-      db.withConnection { connect =>
-        val updateSql = updateSqlInstance.updateTaskSql(id)
-        val preparedStmt: PreparedStatement = connect.prepareStatement(updateSql)
-        preparedStmt.setString(1, bodyTaskSubject)
-        preparedStmt.setString(2, bodyTaskDesc)
-        preparedStmt.setString(3, bodyTaskStatus)
-        preparedStmt.setString(4, bodyTaskUpdatedDate)
-        preparedStmt.setInt(5, id)
-        val resultUpdate = preparedStmt.executeUpdate()
+    db.withConnection { connect =>
+      val updateSql = updateSqlInstance.updateTaskSql(id)
+      val preparedStmt: PreparedStatement = connect.prepareStatement(updateSql)
+      preparedStmt.setString(1, bodyTaskSubject)
+      preparedStmt.setString(2, bodyTaskDesc)
+      preparedStmt.setString(3, bodyTaskUpdatedDate)
+      preparedStmt.setInt(4, id)
+      val resultUpdate = preparedStmt.executeUpdate()
 
-        if (resultUpdate > 0) {
-          Ok(resMsgInstance.responseMsg("Updated Success"))
-        } else {
-          BadRequest(resMsgInstance.responseMsg("Updated UnSuccess"))
-        }
+      if (resultUpdate > 0) {
+        Ok(resMsgInstance.responseMsg("Updated Success"))
+      } else {
+        BadRequest(resMsgInstance.responseMsg("Updated UnSuccess"))
       }
-    } else {
-      BadRequest(resMsgInstance.responseMsg("Please Input Status (pending Or done) is Only."))
     }
   }
 }

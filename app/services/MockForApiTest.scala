@@ -6,8 +6,13 @@ class MockForApiTest {
     url
   }
 
-  def bodyInsertAndUpdate: String = {
-    val body = "{ \"subject\" : \"Task 01 \",\"desc\" : \"Task Api Test\",\"status\": \"pending\"}"
+  def bodyInsert: String = {
+    val body = "{ \"subject\" : \"Task 01 : Insert \",\"desc\" : \"Task Api Test : Insert\"}"
+    body
+  }
+
+  def boduUpdate : String = {
+    val body = "{ \"subject\" : \"Task 01 : Update \",\"desc\" : \"Task Api Test : Update\"}"
     body
   }
 }

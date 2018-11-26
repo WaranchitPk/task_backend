@@ -17,7 +17,7 @@ class TaskSqlCmd {
   }
 
   def updateTaskSql(id: Int): String = {
-    val updateTaskSql = "Update tasks SET tasks_subject = ?,tasks_desc = ?,task_status = ?,updated_date = ? WHERE tasks_id = ?"
+    val updateTaskSql = "Update tasks SET tasks_subject = ?,tasks_desc = ?,updated_date = ? WHERE tasks_id = ?"
     updateTaskSql
   }
 
