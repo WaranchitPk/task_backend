@@ -21,6 +21,11 @@ class TaskSqlCmd {
     updateTaskSql
   }
 
+  def updateStatusTaskSql(id: Int): String = {
+    val updateStatus = "UPDATE tasks SET task_status = ? WHERE tasks_id = ?"
+    updateStatus
+  }
+
   def deleteTaskSql(id: Int): String = {
     val deleteTaskSql = "DELETE FROM tasks WHERE tasks_id = ?"
     deleteTaskSql

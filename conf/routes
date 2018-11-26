@@ -14,6 +14,8 @@ GET           /api/v1/tasks/:id        controllers.Tasks.GetListTaskController.g
 POST          /api/v1/tasks/           controllers.Tasks.InsertTaskController.createTask
 #Update Task
 PUT           /api/v1/tasks/:id        controllers.Tasks.UpdateTaskController.updateTaskById(id: Int)
+#Update Status Task
+PUT           /api/v1/tasks/status/:id        controllers.Tasks.UpdateStatusTaskController.updateStatusTaskById(id : Int)
 #Delete Task
 DELETE        /api/v1/tasks/:id        controllers.Tasks.DeleteTaskController.deleteTaskById(id : Int)
 

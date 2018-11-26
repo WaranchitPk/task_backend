@@ -16,3 +16,4 @@ WORKDIR /web_service/app/bin
 ENTRYPOINT [ "./backend", "-Dplay.http.secret.key=preawjeed39"]
 
 EXPOSE 9000
+
