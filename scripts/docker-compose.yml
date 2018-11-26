@@ -16,6 +16,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: preawjeed39
       MYSQL_DATABASE: todo_list
+      TZ: Asia/Bangkok
     networks:
       vpcbr:
         ipv4_address: 10.5.0.5

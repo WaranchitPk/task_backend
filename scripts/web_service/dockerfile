@@ -1,13 +1,17 @@
 FROM openjdk:8u181-jdk-alpine3.8
 
+
 RUN apk update && \
     apk add --no-cache bash && \
-    mkdir /web_service 
+    apk add  tzdata && \
+    mkdir /web_service
+
+
+ENV TZ Asia/Bangkok
 
 COPY app /web_service/app
 
 WORKDIR /web_service/app/bin
-
 
 ENTRYPOINT [ "./backend", "-Dplay.http.secret.key=preawjeed39"]
 
