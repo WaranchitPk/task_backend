@@ -5,7 +5,7 @@ import services.MockForApiTest
 
 class UpdateTaskSpec extends PlaySpecification {
   val apiInstance = new MockForApiTest
-  val idTaskUpdate = 16
+  val idTaskUpdate = 1
   "Test : Insert Task" should {
     "Update Task Success" in new WithServer() {
       val responseUpdate = await(WsTestClient

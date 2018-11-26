@@ -1,0 +1,9 @@
+FROM mysql:5.6.42
+
+# RUN mkdir /usr/sql &&\
+#     chmod 644 /usr/sql
+
+COPY tasks.sql /docker-entrypoint-initdb.d/tasks.sql 
+
+RUN /etc/init.d/mysql start --user=root --password=preawjeed39 todo_list < /docker-entrypoint-initdb.d/tasks.sql 
+EXPOSE 3306    

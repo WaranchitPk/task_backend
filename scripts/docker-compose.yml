@@ -1,0 +1,31 @@
+version: "3.4"
+services:
+  api:
+    build:
+      context: ./web_service
+    container_name: api_tasks
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - "9000:9000"
+  database:
+    build:
+      context: ./db
+    container_name: db_tasks
+    environment:
+      MYSQL_ROOT_PASSWORD: preawjeed39
+      MYSQL_DATABASE: todo_list
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+    restart: always
+    ports:
+      - "3306:3306"
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16

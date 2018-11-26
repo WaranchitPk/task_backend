@@ -17,7 +17,9 @@ libraryDependencies ++= Seq(
   specs2 % Test,
   guice,
   "mysql" % "mysql-connector-java" % "6.0.6",
-  jdbc % Test)
+  jdbc % Test,
+  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
+)
 
 unmanagedResourceDirectories in Test <+= baseDirectory(_ / "target/web/public/test")  
 

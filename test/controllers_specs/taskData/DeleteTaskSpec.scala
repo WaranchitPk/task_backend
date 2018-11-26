@@ -5,7 +5,7 @@ import services.MockForApiTest
 
 class DeleteTaskSpec extends PlaySpecification {
   val apiInstance = new MockForApiTest
-  val idTaskDelete = 20
+  val idTaskDelete = 1
   "Test : Delete Task" should {
     "Delete Task Success" in new WithServer() {
       val responseDelete = await(WsTestClient
