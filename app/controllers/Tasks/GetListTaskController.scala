@@ -6,7 +6,7 @@ import play.api.db.Database
 import play.api.libs.json._
 import scala.collection.mutable
 
-import models.AllTask
+import models._
 import services.TaskSqlCmd
 import services.TaskJsonWrites
 
@@ -37,15 +37,16 @@ class GetListTaskController @Inject()(db: Database, cc: ControllerComponents) ex
     db.withConnection { connect =>
       val stmt = connect.createStatement()
       val selectTaskByIdSql = stmt.executeQuery(selectTaskSqlInstance.getTaskByIdSql(id))
-      val tasksList = mutable.ListBuffer[AllTask]()
+      val tasksList = mutable.ListBuffer[AllTaskById]()
       while (selectTaskByIdSql.next()) {
         val taskId = selectTaskByIdSql.getString(1)
         val taskSubject = selectTaskByIdSql.getString(2)
         val taskDesc = selectTaskByIdSql.getString(3)
         val taskStatus = selectTaskByIdSql.getString(4)
-        tasksList.append(AllTask(taskId, taskSubject, taskDesc, taskStatus))
+        val taskCreatedDate = selectTaskByIdSql.getString(5)
+        tasksList.append(AllTaskById(taskId, taskSubject, taskDesc, taskStatus, taskCreatedDate))
       }
-      val taskSeq = Writes.seq(taskWritesJsonInstance.taskWrites)
+      val taskSeq = Writes.seq(taskWritesJsonInstance.taskByIdWrites)
       val response = taskSeq.writes(tasksList)
       Ok(response)
     }

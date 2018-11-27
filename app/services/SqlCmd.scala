@@ -2,12 +2,12 @@ package services
 
 class TaskSqlCmd {
   def getTaskSql: String = {
-    val selectTaskSql = "SELECT tasks_id,tasks_subject, tasks_desc,task_status FROM tasks"
+    val selectTaskSql = "SELECT tasks_id,tasks_subject, tasks_desc,task_status FROM tasks WHERE task_status = 'pending'"
     selectTaskSql
   }
 
   def getTaskByIdSql(id: Int): String = {
-    val selectTaskByIdSql = s"SELECT tasks_id,tasks_subject, tasks_desc,task_status FROM tasks WHERE tasks_id = ${id}"
+    val selectTaskByIdSql = s"SELECT tasks_id,tasks_subject, tasks_desc,task_status,created_date FROM tasks WHERE tasks_id = ${id}"
     selectTaskByIdSql
   }
 
