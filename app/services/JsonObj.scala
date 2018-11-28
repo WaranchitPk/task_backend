@@ -27,4 +27,5 @@ class TaskJsonWrites {
       (JsPath \ "status").write[String] and
       (JsPath \ "created_date").write[String]
     ) (unlift(AllTaskById.unapply))
+
 }

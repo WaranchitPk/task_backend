@@ -11,6 +11,7 @@ class TaskSqlCmd {
     selectTaskByIdSql
   }
 
+
   def insertTaskSql: String = {
     val insertTaskSql = "INSERT INTO tasks (tasks_subject, tasks_desc,task_status,created_date) VALUES(?,?,?,?)"
     insertTaskSql

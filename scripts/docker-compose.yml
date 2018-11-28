@@ -1,5 +1,14 @@
 version: "3.4"
 services:
+  app:
+    build:
+      context: ./front_end
+    container_name: app_tasks
+    depends_on:
+      - database
+      - api
+    ports:
+      - "3000:3000"
   api:
     build:
       context: ./web_service
