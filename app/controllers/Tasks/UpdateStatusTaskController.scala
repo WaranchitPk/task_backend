@@ -15,20 +15,30 @@ class UpdateStatusTaskController @Inject()(db: Database, cc: ControllerComponent
   val updateSqlInstance = new TaskSqlCmd
 
   def updateStatusTaskById(id: Int) = Action(parse.json) { request =>
-
     val bodyTaskStatus = (request.body \ "status").as[String]
-    db.withConnection { connect =>
-      val updateSql = updateSqlInstance.updateStatusTaskSql(id)
-      val preparedStmt: PreparedStatement = connect.prepareStatement(updateSql)
-      preparedStmt.setString(1, bodyTaskStatus)
-      preparedStmt.setInt(2, id)
-      val resultUpdate = preparedStmt.executeUpdate()
 
-      if (resultUpdate > 0) {
-        Ok(resMsgInstance.responseMsg("Updated Status Success"))
-      } else {
-        BadRequest(resMsgInstance.responseMsg("Updated UnSuccess"))
+    //  Check the body(status) from  Client
+    if (bodyTaskStatus == "done") {
+      //      if status equal done
+      db.withConnection { connect =>
+        val updateSql = updateSqlInstance.updateStatusTaskSql(id)
+        val preparedStmt: PreparedStatement = connect.prepareStatement(updateSql)
+        preparedStmt.setString(1, bodyTaskStatus)
+        preparedStmt.setInt(2, id)
+        val resultUpdate = preparedStmt.executeUpdate()
+
+        //        Check Data Updated?
+        if (resultUpdate > 0) {
+          //          if Update Success
+          Ok(resMsgInstance.responseMsg("Updated Status Success"))
+        } else {
+          //          if Update Unsuccessful
+          BadRequest(resMsgInstance.responseMsg("Task id not existing, please try again."))
+        }
       }
+    } else {
+      //      if Status body(status) is Not equal done
+      BadRequest(resMsgInstance.responseMsg("Set Status, please Input done  is Only!!!"))
     }
   }
 }

@@ -18,7 +18,6 @@ const SetStatusButton = ({
                              isOpenDialogConfirmStatus,
                              onOpenDialogConfirmStatus,
                              onCloseDialogConfirmStatus,
-                             idTask,
                              onSubmitFormConfirmStatus,
                              titleTask
                          }) => {
@@ -36,7 +35,7 @@ const SetStatusButton = ({
                 <DialogTitle>Task : Set Status {titleTask} Task</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Do You Want To Set a Status {titleTask} Task is Complete(done) ?
+                        Do You Want To Set a Status {titleTask} Task is Complete(done)?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

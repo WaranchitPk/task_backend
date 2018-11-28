@@ -3,6 +3,7 @@ import AddTaskComponent from '../../components/tasks/addTaskButton';
 import insertTask from '../../actions/insertTasks';
 import { getListTask } from '../../actions/getTasks';
 import { connect } from 'react-redux';
+import swal from 'sweetalert';
 
 class AddTaskButton extends Component {
   state = {
@@ -32,16 +33,22 @@ class AddTaskButton extends Component {
     event.preventDefault()
     const { subject, desc } = this.state;
     const { dispatch } = this.props;
-    const body = {
-      subject: subject,
-      desc: desc
-    }
-    insertTask(body).then(_ => {
-      dispatch(getListTask())
-      this.setState({
-        isOpenDialogAddTask: false
+    if (subject === '' || desc === ''){
+      swal('Warning', 'Please Input value in Subject Field And Content Field', 'warning', {
+        button: 'Ok',
+      });
+    } else {
+      const body = {
+        subject: subject,
+        desc: desc
+      }
+      insertTask(body).then(_ => {
+        dispatch(getListTask())
+        this.setState({
+          isOpenDialogAddTask: false
+        })
       })
-    })
+    }
   }
 
 

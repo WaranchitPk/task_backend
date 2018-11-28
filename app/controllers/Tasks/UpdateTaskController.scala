@@ -15,7 +15,7 @@ class UpdateTaskController @Inject()(db: Database, cc: ControllerComponents) ext
   val updateSqlInstance = new TaskSqlCmd
 
   def updateTaskById(id: Int) = Action(parse.json) { request =>
-
+    //    Retrieve body from Client
     val bodyTaskSubject = (request.body \ "subject").as[String]
     val bodyTaskDesc = (request.body \ "desc").as[String]
     val bodyTaskUpdatedDate = LocalDateTime.now().toString
@@ -27,11 +27,13 @@ class UpdateTaskController @Inject()(db: Database, cc: ControllerComponents) ext
       preparedStmt.setString(3, bodyTaskUpdatedDate)
       preparedStmt.setInt(4, id)
       val resultUpdate = preparedStmt.executeUpdate()
-
+      //        Check Data Updated?
       if (resultUpdate > 0) {
+        //          if Update Success
         Ok(resMsgInstance.responseMsg("Updated Success"))
       } else {
-        BadRequest(resMsgInstance.responseMsg("Updated UnSuccess"))
+        //          if Update Unsuccessful
+        BadRequest(resMsgInstance.responseMsg("Task id not existing, please try again."))
       }
     }
   }

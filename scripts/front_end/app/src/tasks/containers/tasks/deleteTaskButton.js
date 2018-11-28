@@ -31,7 +31,7 @@ class DeleteTaskButton extends Component {
 
   render() {
     const { isOpenDialogDelete } = this.state
-    const { idTask,titleTask } = this.props;
+    const { titleTask } = this.props;
     return (
       <div>
         <DeleteTaskComponent
@@ -39,7 +39,6 @@ class DeleteTaskButton extends Component {
           onOpenDialogDelete={this.handleOpenDialogDeleteTask}
           onCloseDialogDelete={this.handleCloseDialogDeleteTask}
           onSubmitFormDelete={this.handleSubmitInformDelete}
-          idTask={idTask}
           titleTask={titleTask}/>
       </div>
     );

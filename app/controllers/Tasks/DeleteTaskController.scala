@@ -21,11 +21,10 @@ class DeleteTaskController @Inject()(db: Database, cc: ControllerComponents) ext
       val preparedStmt: PreparedStatement = connect.prepareStatement(deleteSql)
       preparedStmt.setInt(1, id)
       val resultDelete = preparedStmt.executeUpdate()
-      println(s"result : ${resultDelete}")
       if (resultDelete > 0) {
         NoContent
       } else {
-        BadRequest(resMsgInstance.responseMsg("Delete UnSuccess"))
+        BadRequest(resMsgInstance.responseMsg("Task id not existing, please try again."))
       }
     }
   }

@@ -27,6 +27,7 @@ class GetListTaskController @Inject()(db: Database, cc: ControllerComponents) ex
         val taskStatus = selectSql.getString(4)
         tasksList.append(AllTask(taskId, taskSubject, taskDesc, taskStatus))
       }
+
       val taskSeq = Writes.seq(taskWritesJsonInstance.taskWrites)
       val response = taskSeq.writes(tasksList)
       Ok(response)
