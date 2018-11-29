@@ -32,10 +32,10 @@ const SetStatusButton = ({
                 open={isOpenDialogConfirmStatus}
                 TransitionComponent={Transition}
                 onClose={onCloseDialogConfirmStatus}>
-                <DialogTitle>Task : Set Status {titleTask} Task</DialogTitle>
+                <DialogTitle>Task : Set Status <b>{titleTask}</b> Task</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Do You Want To Set a Status {titleTask} Task is Complete(done)?
+                        Do You Want To Set a Status <b>{titleTask}</b> Task is Complete(done)?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

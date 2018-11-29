@@ -3,11 +3,10 @@ import ListTasksComponent from '../../components/tasks/listTasks';
 
 class ListTasks extends PureComponent {
   render() {
-    const { tasksData } = this.props;
 
     return (
       <div>
-        <ListTasksComponent tasksData={tasksData}/>
+        <ListTasksComponent />
       </div>
     );
   }

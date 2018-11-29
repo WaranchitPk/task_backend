@@ -39,3 +39,8 @@
     -moz-user-select: none;
     margin-right: 5px;
 }
+
+
+#styleDivider {
+    margin-bottom: 25px;
+}

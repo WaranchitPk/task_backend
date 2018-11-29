@@ -34,6 +34,25 @@ class GetListTaskController @Inject()(db: Database, cc: ControllerComponents) ex
     }
   }
 
+  def getTaskIsStatusEqualDone = Action {
+    db.withConnection { connect =>
+      val stm = connect.createStatement()
+      val selectSql = stm.executeQuery(selectTaskSqlInstance.getTaskStatusIsDoneSql)
+      val tasksList = mutable.ListBuffer[AllTask]()
+      while (selectSql.next()) {
+        val taskId = selectSql.getString(1)
+        val taskSubject = selectSql.getString(2)
+        val taskDesc = selectSql.getString(3)
+        val taskStatus = selectSql.getString(4)
+        tasksList.append(AllTask(taskId, taskSubject, taskDesc, taskStatus))
+      }
+
+      val taskSeq = Writes.seq(taskWritesJsonInstance.taskWrites)
+      val response = taskSeq.writes(tasksList)
+      Ok(response)
+    }
+  }
+
   def getTaskById(id: Int) = Action {
     db.withConnection { connect =>
       val stmt = connect.createStatement()

@@ -7,7 +7,7 @@ import '../styles/body.css';
 import ListTaskContainer from '../containers/tasks/listTasks'
 import ButtonAddTask from '../containers/tasks/addTaskButton';
 
-const Task = ({ tasksData }) => {
+const Task = () => {
   return (
     <div>
       <Typography align="center" color="textSecondary" variant="h2" id='titleTodoList'>To-Do List</Typography>
@@ -16,7 +16,7 @@ const Task = ({ tasksData }) => {
           <ButtonAddTask/>
         </Grid>
       </Grid>
-      <ListTaskContainer tasksData={tasksData}/>
+      <ListTaskContainer/>
     </div>
   );
 };

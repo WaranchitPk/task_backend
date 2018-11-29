@@ -45,7 +45,9 @@ class AddTaskButton extends Component {
       insertTask(body).then(_ => {
         dispatch(getListTask())
         this.setState({
-          isOpenDialogAddTask: false
+          isOpenDialogAddTask: false,
+          subject: '',
+          desc: ''
         })
       })
     }

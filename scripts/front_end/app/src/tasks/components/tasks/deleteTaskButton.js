@@ -31,7 +31,7 @@ const DeleteTaskButton = ({
                 open={isOpenDialogDelete}
                 TransitionComponent={Transition}
                 onClose={onCloseDialogDelete}>
-                <DialogTitle>Task : Delete {titleTask} Task </DialogTitle>
+                <DialogTitle>Task : Delete <b>{titleTask}</b> Task </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Do You Want To Delete {titleTask} Task ?
